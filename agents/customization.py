@@ -83,7 +83,7 @@ def EWC_zero_init(agent_config):
 
 def EWC_rand_init(agent_config):
     agent = EWC(agent_config)
-    agent.reset_optimizer = True
+    agent.reset_optimizer = False # Change by Amir  = True
     return agent
 
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 GPUID=$1
 OUTDIR=outputs/split_MNIST_incremental_class
 REPEAT=10

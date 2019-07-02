@@ -103,8 +103,8 @@ def get_args(argv):
     parser.add_argument('--dataroot', type=str, default='data', help="The root folder of dataset or downloaded data")
     parser.add_argument('--dataset', type=str, default='MNIST', help="MNIST(default)|CIFAR10|CIFAR100")
     parser.add_argument('--n_permutation', type=int, default=0, help="Enable permuted tests when >0")
-    parser.add_argument('--first_split_size', type=int, default=2)
-    parser.add_argument('--other_split_size', type=int, default=2)
+    parser.add_argument('--first_split_size', type=int, default=2) # Amir Changed :2
+    parser.add_argument('--other_split_size', type=int, default=2) # Amir Changed :2
     parser.add_argument('--no_class_remap', dest='no_class_remap', default=False, action='store_true',
                         help="Avoid the dataset with a subset of classes doing the remapping. Ex: [2,5,6 ...] -> [0,1,2 ...]")
     parser.add_argument('--train_aug', dest='train_aug', default=False, action='store_true',

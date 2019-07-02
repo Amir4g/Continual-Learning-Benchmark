@@ -3,7 +3,7 @@ import torch.nn as nn
 
 class LeNet(nn.Module):
 
-    def __init__(self, out_dim=10, in_channel=1, img_sz=32):
+    def __init__(self, out_dim=10, in_channel=3, img_sz=32): # Changed By Amir = in_channel=1
         super(LeNet, self).__init__()
         feat_map_sz = img_sz//4
         self.n_feat = 50 * feat_map_sz * feat_map_sz
