@@ -92,9 +92,12 @@ class NormalNN(nn.Module):
     def predict(self, inputs):
         self.model.eval()
         out = self.forward(inputs)
+        # Changed By Amir
         for t in out.keys():
             out[t] = out[t].detach()
         return out
+        # out = out.detach()
+        # return out
 
     def validation(self, dataloader):
         # This function doesn't distinguish tasks.
@@ -136,7 +139,7 @@ class NormalNN(nn.Module):
                     loss += self.criterion_fn(t_preds, t_target) * len(inds)  # restore the loss from average
             loss /= len(targets)  # Average the total loss by the mini-batch size
         else:
-            pred = preds['All']
+            pred = preds['All']   #Changed By Amir preds['All']
             if isinstance(self.valid_out_dim, int):  # (Not 'ALL') Mask out the outputs of unseen classes for incremental class scenario
                 pred = preds['All'][:,:self.valid_out_dim]
             loss = self.criterion_fn(pred, targets)
@@ -244,8 +247,8 @@ class NormalNN(nn.Module):
         return self
 
 def accumulate_acc(output, target, task, meter):
-    if 'All' in output.keys(): # Single-headed model
-        meter.update(accuracy(output['All'], target), len(target))
+    if 'All' in output.keys(): # Single-headed model --Changed By Amir
+        meter.update(accuracy(output['All'], target), len(target)) # --Changed By Amir
     else:  # outputs from multi-headed (multi-task) model
         for t, t_out in output.items():
             inds = [i for i in range(len(task)) if task[i] == t]  # The index of inputs that matched specific task
